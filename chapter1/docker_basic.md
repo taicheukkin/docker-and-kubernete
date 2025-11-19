@@ -81,4 +81,153 @@
 6. **Platform independence** enables true "build once, run anywhere"
 7. **Comprehensive ecosystem** with tools for various use cases
 
-Docker has become the de facto standard for containerization, providing developers with a powerful tool for creating, deploying, and managing applications consistently across different environments while enabling modern software development methodologies.
+Docker has become the de facto standard for containerization, providing developers with a powerful tool for creating, deploying, and managing applications consistently across different environments while enabling modern software development methodologies. 
+
+Based on the video transcript, here is a comprehensive summary of building and running Docker containers:
+
+## Building and Running Docker Containers
+
+### **Docker Development Process**
+
+**Three-Step Workflow:**
+1. **Create a Dockerfile** - Define container specifications
+2. **Build container image** - Use Dockerfile to create executable image
+3. **Run container** - Create running instance from the image
+
+### **Dockerfile Basics**
+
+#### **Key Dockerfile Commands:**
+```dockerfile
+# Sample Dockerfile
+FROM base-image:tag        # Defines the base operating system/image
+CMD ["echo", "hello world"] # Command to execute when container starts
+```
+
+#### **Example Dockerfile:**
+```dockerfile
+FROM ubuntu:20.04
+CMD ["echo", "hello world"]
+```
+
+### **Building Container Images**
+
+#### **Build Command:**
+```bash
+docker build -t my-app:v1 .
+```
+
+**Command Breakdown:**
+- `docker build` - Creates image from Dockerfile
+- `-t my-app:v1` - Tags image with repository and version
+- `.` - Current directory (build context)
+
+#### **Build Output:**
+```
+Sending build context to Docker Daemon
+Successfully built <image-id>
+Successfully tagged my-app:v1
+```
+
+### **Verifying Image Creation**
+
+#### **List Images:**
+```bash
+docker images
+```
+
+**Output Shows:**
+- **Repository** (my-app)
+- **Tag** (v1)
+- **Image ID** (unique identifier)
+- **Creation Date**
+- **Image Size**
+
+### **Running Containers**
+
+#### **Run Command:**
+```bash
+docker run my-app:v1
+```
+
+**Result:** Container executes and prints "hello world" to terminal
+
+#### **Check Running Containers:**
+```bash
+docker ps -a
+```
+Shows details of all containers (running and stopped)
+
+### **Essential Docker Commands**
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| **`docker build`** | Create image from Dockerfile | `docker build -t my-app:v1 .` |
+| **`docker images`** | List all local images | `docker images` |
+| **`docker run`** | Create and run container from image | `docker run my-app:v1` |
+| **`docker push`** | Store image in registry | `docker push my-registry/my-app:v1` |
+| **`docker pull`** | Retrieve image from registry | `docker pull my-registry/my-app:v1` |
+| **`docker ps`** | Show container details | `docker ps -a` |
+
+### **Complete Workflow Example**
+
+#### **Step 1: Create Dockerfile**
+```dockerfile
+FROM alpine:latest
+CMD ["echo", "Hello from Docker!"]
+```
+
+#### **Step 2: Build Image**
+```bash
+docker build -t hello-docker:v1 .
+```
+
+#### **Step 3: Verify Image**
+```bash
+docker images
+# Output: hello-docker v1 <id> <date> <size>
+```
+
+#### **Step 4: Run Container**
+```bash
+docker run hello-docker:v1
+# Output: Hello from Docker!
+```
+
+#### **Step 5: Check Container Status**
+```bash
+docker ps -a
+# Shows the executed container details
+```
+
+### **Key Concepts**
+
+#### **Image vs Container:**
+- **Image:** Blueprint/template (built from Dockerfile)
+- **Container:** Running instance of an image
+
+#### **Tagging:**
+- **Format:** `repository:tag`
+- **Examples:** `my-app:v1`, `nginx:latest`, `python:3.9`
+
+#### **Registry Operations:**
+- **Push:** Upload image to Docker Hub/private registry
+- **Pull:** Download image from registry
+
+### **Best Practices**
+
+1. **Use specific tags** (not just `latest`)
+2. **Keep Dockerfiles minimal** for smaller images
+3. **Use `.dockerignore`** to exclude unnecessary files
+4. **Multi-stage builds** for production optimization
+5. **Version your images** for rollback capability
+
+### **Key Takeaways**
+
+1. **Dockerfile defines** the container environment and behavior
+2. **`docker build` creates** executable images from Dockerfiles
+3. **`docker run` instantiates** containers from images
+4. **Tagging helps** organize and version images
+5. **Registry commands** enable image sharing and distribution
+6. **Container lifecycle** is managed through these fundamental commands
+
+This workflow forms the foundation of Docker container development, enabling consistent, reproducible application deployment across any environment.
