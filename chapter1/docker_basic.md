@@ -200,6 +200,7 @@ docker ps -a
 ```
 
 ### **Key Concepts**
+<img width="1253" height="616" alt="image" src="https://github.com/user-attachments/assets/220bb2eb-9a5c-42fd-abf6-160a23440e55" />
 
 #### **Image vs Container:**
 - **Image:** Blueprint/template (built from Dockerfile)
